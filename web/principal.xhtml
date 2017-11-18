@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Grupo</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css"/>
+    <script src="resources/jquery/jquery.min.js"/>
+    <script src="resources/bootstrap/js/bootstrap.min.js"/>
+    <script src="segappJS.js"></script>
+    <style src="css/template.css"/>
+</h:head>
+<h:body>
+<h:form>
+    <h:commandButton value="Sair do Grupo" styleClass="btn btn-primary" action="#{pessoaMB.segapp(pessoaMB.pessoa)}"/>
+    <h:commandButton value="Deixar de ser administrador" style="#{grupoMB.styleAdmin()}" styleClass="btn btn-primary" action="#{grupoMB.deixarDeSerAdministrador()}"/>
+    <h:commandButton value="Tornar-se Administrador" style="#{grupoMB.styleBtnTornarAdm()}" styleClass="btn btn-primary" action="#{grupoMB.tornarAdministrador()}"/><br/><br/>
+    <h:dataTable var="participante" value="#{grupoMB.listaParticipantes}" styleClass="table table-bordered">
+        <f:facet name="header">
+            <h:outputText value="Participantes do Grupo"/>
+        </f:facet>
+        <h:column>
+            <f:facet name="header">
+                <h:outputText value="Nome"/>
+            </f:facet>
+            <h:outputText value="#{participante.nome}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <h:outputText value="Opções"/>
+            </f:facet>
+            <h:commandButton value="Remover" style="#{grupoMB.styleGrupo(participante.id)}" styleClass="btn btn-primary" action="#{grupoParticipantesMB.excluiParticipante(grupoMB.grupo.id, participante.id)}" />
+        </h:column>
+    </h:dataTable>
+    <h:commandButton value="Adicionar Participante" style="#{grupoMB.styleAdmin()}" styleClass="btn btn-primary" action="#{grupoParticipantesMB.adicionarParticipante(grupoMB.grupo)}"/>
+    <br/><br/>   
+    
+    <h:commandButton value="Mensagens" styleClass="btn btn-primary" action="#{grupoMB.mensagens()}" />
+    <br/><br/>
+    
+    <h:dataTable var="msg" value="#{mensagemMB.listaAlertas}" styleClass="table table-bordered">
+        <f:facet name="header">
+            <h:outputText value="Alertas"/>
+        </f:facet>
+        <h:column>
+            <h:outputText value="#{msg.retNomePessoa()} #{msg.dtHrCriacao()}" />
+        </h:column>
+        <h:column>
+            <h:outputText value="#{msg.mensagem}" />
+        </h:column>
+    </h:dataTable>
+</h:form>
+</h:body>
+</html>
+

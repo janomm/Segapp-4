@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+    <title>Pessoa</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css"/>
+    <script src="resources/jquery/jquery.min.js"/>
+    <script src="resources/bootstrap/js/bootstrap.min.js"/>
+    <style src="css/template.css"/>
+</h:head>
+<h:body>
+    <h:form enctype="multipart/form-data">
+        <div class="col-sm-8 text-left">
+            <h:panelGrid columns="2" border="0" styleClass="table table-bordered" >
+                <h:outputLabel for="idNome" value="Nome do Grupo:"/>
+                <h:inputText id="idNome" value="#{grupoMB.grupo.nome}" />
+
+                <h:commandButton value="Alterar" styleClass="btn btn-primary" action="#{grupoMB.editaGrupo()}"/>
+                <h:button value="Voltar" styleClass="btn btn-primary" outcome="grupo"/>
+            </h:panelGrid>
+            <h:outputLabel value="#{grupoMB.msgError}" style="color: red" />
+        </div>
+    </h:form>
+</h:body>
+</html>

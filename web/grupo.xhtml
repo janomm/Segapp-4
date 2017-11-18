@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Grupos</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css"/>
+    <script src="resources/jquery/jquery.min.js"/>
+    <script src="resources/bootstrap/js/bootstrap.min.js"/>
+    <style src="css/template.css"/>
+</h:head>
+<h:body>
+<h:form>
+    <!--<h:inputText id="nomePessoa" value="# {grupoMB.pessoa.nome}" />-->
+    
+    <h:dataTable var="grupo" value="#{grupoMB.retornaListaGrupos()}" styleClass="table table-bordered">
+        <f:facet name="header">
+            <h:outputText value="Grupo"/>
+        </f:facet>
+        <h:column>
+            <f:facet name="header">
+                <h:outputText value="Nome"/>
+            </f:facet>
+            <h:outputText value="#{grupo.nome}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <h:outputText value="Criação"/>
+            </f:facet>
+            <h:outputText value="#{grupo.dtCriacaoFormatada()}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <h:outputText value="Situação"/>
+            </f:facet>
+            <h:outputText value="#{grupo.situacao(grupoMB.pessoa.id)}"/>    
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <h:outputText value="Num Participantes"/>
+            </f:facet>
+            <h:outputText value="#{grupo.numParticipantes()}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <h:outputText value="Opções"/>
+            </f:facet>
+            <h:commandButton value="Editar" style="#{grupoMB.style(grupo)}" styleClass="btn btn-primary" action="#{grupoMB.editarGrupo(grupo)}" /> 
+            <h:commandButton value="Excluir" style="#{grupoMB.style(grupo)}" styleClass="btn btn-primary" action="#{grupoMB.excluirGrupo(grupo)}" />
+            <h:commandButton value="Entrar" styleClass="btn btn-primary" action="#{grupoMB.detalheGrupo(grupo)}" />
+        </h:column>
+    </h:dataTable> 
+    <h:commandButton value="Novo Grupo" styleClass="btn btn-primary" action="#{grupoMB.criarGrupo()}"/>
+    <h:commandButton value="Voltar" styleClass="btn btn-primary" action="#{grupoMB.voltar()}"/>
+    <h:outputLabel value="#{grupoMB.msgError}" style="color: red" />
+</h:form>
+</h:body>
+</html>
+

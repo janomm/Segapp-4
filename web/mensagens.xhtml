@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Grupos</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css"/>
+    <script src="resources/jquery/jquery.min.js"/>
+    <script src="resources/bootstrap/js/bootstrap.min.js"/>
+    <style src="css/template.css"/>
+</h:head>
+<h:body>
+    <h:form>
+        <h:commandButton value="Voltar" styleClass="btn btn-primary" action="#{mensagemMB.voltar()}" /><br/><br/>
+        <h:inputText value="#{mensagemMB.mensagem.mensagem}" />
+        <h:commandButton value="Enviar" styleClass="btn btn-primary" action="#{mensagemMB.enviarMensagem()}" />
+        <h:outputLabel value="#{mensagemMB.msgError}" style="color: red" />
+        <br/>
+        <h:dataTable var="msg" value="#{mensagemMB.listaMensagens}" styleClass="table table-bordered">
+            <h:column>
+                <h:outputText value="#{msg.retNomePessoa()} #{msg.dtHrCriacao()}" />
+            </h:column>
+            <h:column>
+                <h:outputText value="#{msg.mensagem}" />
+            </h:column>
+        </h:dataTable>
+        
+    </h:form>
+</h:body>
+</html>
+
