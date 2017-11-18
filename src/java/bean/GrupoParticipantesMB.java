@@ -188,6 +188,11 @@ public class GrupoParticipantesMB implements Serializable {
                 return "adicionarParticipante";
             }
             
+            if(pessoa.getId().equals(grupo.getIdAdm())){
+                msgError = "Usuário já cadastrado.";
+                return "adicionarParticipante";
+            }
+            
             if(!grupoParticipanteDB.pessoaParticipaGrupo(pessoa.getId(), grupo.getId())){
 
                 grupoParticipantes.setIdPessoa(pessoa.getId());
